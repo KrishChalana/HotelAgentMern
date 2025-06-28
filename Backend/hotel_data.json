@@ -1,0 +1,158 @@
+[
+  {
+    "hotel_id": "H001",
+    "hotel_name": "Radisson Blu Jaipur",
+    "address": "Tonk Road, Jaipur, Rajasthan 302018, India",
+    "contact_number": "+91-141-2771234",
+    "email": "reservations.jaipur@radissonblu.com",
+    "website": "https://www.radissonhotels.com/en-us/hotels/radisson-blu-jaipur",
+    "check_in_time": "02:00 PM",
+    "check_out_time": "12:00 PM",
+    "current_status": "Open",
+    "reopening_date": null,
+    "description": "A contemporary upscale hotel located near Jaipur International Airport, offering modern amenities, a rooftop pool, and various dining options.",
+    "amenities": ["Swimming Pool", "Fitness Center", "Spa", "Restaurant", "Bar", "Free Wi-Fi", "Airport Shuttle", "Meeting Rooms"],
+    "star_rating": 5,
+    "number_of_rooms": 180,
+    "room_types_available": ["Standard Room", "Superior Room", "Business Class Room", "Suite"],
+    "special_offers": "https://www.radissonhotels.com/en-us/hotels/radisson-blu-jaipur/deals",
+    "room_service_menu": [
+      {
+        "item_id": "RSM001",
+        "item_name": "Paneer Tikka Masala",
+        "category": "Main Course - Indian",
+        "price": 650.00,
+        "description": "Cottage cheese cubes cooked in a rich tomato and cashew gravy.",
+        "availability": "Available",
+        "preparation_time_minutes": 30
+      },
+      {
+        "item_id": "RSM002",
+        "category": "Beverages",
+        "item_name": "Fresh Lime Soda",
+        "price": 200.00,
+        "description": "Refreshing lime juice with soda, sweet or salty.",
+        "availability": "Available",
+        "preparation_time_minutes": 5
+      },
+      {
+        "item_id": "RSM003",
+        "category": "Snacks",
+        "item_name": "Club Sandwich (Veg)",
+        "price": 500.00,
+        "description": "Triple-layered sandwich with vegetables and cheese, served with fries.",
+        "availability": "Available",
+        "preparation_time_minutes": 20
+      }
+    ],
+    "bookings": [
+      {
+        "booking_id": "B001",
+        "guest_id": "G001",
+        "room_number": "205",
+        "room_type": "Standard Room",
+        "check_in_date": "2025-07-15",
+        "check_out_date": "2025-07-18",
+        "status": "Confirmed"
+      },
+      {
+        "booking_id": "B002",
+        "guest_id": "G002",
+        "room_number": "310",
+        "room_type": "Superior Room",
+        "check_in_date": "2025-08-01",
+        "check_out_date": "2025-08-05",
+        "status": "Confirmed"
+      }
+    ],
+    "room_statuses": [
+      {"room_number": "101", "status": "Vacant", "guest_id": null},
+      {"room_number": "102", "status": "Occupied", "guest_id": "G003"},
+      {"room_number": "103", "status": "Cleaning", "guest_id": null}
+    ]
+  },
+  {
+    "hotel_id": "H002",
+    "hotel_name": "The Leela Palace Udaipur",
+    "address": "Lake Pichola, Udaipur, Rajasthan 313001, India",
+    "contact_number": "+91-294-6701234",
+    "email": "reservations.udaipur@theleela.com",
+    "website": "https://www.theleela.com/the-leela-palace-udaipur",
+    "check_in_time": "03:00 PM",
+    "check_out_time": "12:00 PM",
+    "current_status": "Open",
+    "reopening_date": null,
+    "description": "An exquisite luxury hotel offering stunning views of Lake Pichola and the Aravalli mountains, inspired by the grand palaces of Rajasthan.",
+    "amenities": ["Infinity Pool", "Spa", "Fine Dining Restaurants", "Bar", "Boating", "Cultural Experiences", "Free Wi-Fi"],
+    "star_rating": 5,
+    "number_of_rooms": 80,
+    "room_types_available": ["Premier Room", "Maharani Suite", "Maharaja Suite", "Duplex Suite"],
+    "special_offers": "https://www.theleela.com/the-leela-palace-udaipur/offers",
+    "room_service_menu": [
+      {
+        "item_id": "LPM001",
+        "item_name": "Laal Maas",
+        "category": "Main Course - Indian",
+        "price": 950.00,
+        "description": "Traditional Rajasthani spicy lamb curry.",
+        "availability": "Available",
+        "preparation_time_minutes": 40
+      },
+      {
+        "item_id": "LPM002",
+        "item_name": "Caesar Salad",
+        "category": "Salads",
+        "price": 600.00,
+        "description": "Classic Caesar salad with grilled chicken/paneer option.",
+        "availability": "Available",
+        "preparation_time_minutes": 15
+      }
+    ],
+    "bookings": [
+      {
+        "booking_id": "B003",
+        "guest_id": "G004",
+        "room_number": "10",
+        "room_type": "Premier Room",
+        "check_in_date": "2025-09-01",
+        "check_out_date": "2025-09-04",
+        "status": "Confirmed"
+      }
+    ],
+    "room_statuses": [
+      {"room_number": "1", "status": "Vacant", "guest_id": null},
+      {"room_number": "2", "status": "Occupied", "guest_id": "G005"}
+    ]
+  },
+  {
+    "hotel_id": "H003",
+    "hotel_name": "Taj Lake Palace Udaipur",
+    "address": "Pichola, Udaipur, Rajasthan 313001, India",
+    "contact_number": "+91-294-2428800",
+    "email": "lakepalace.udaipur@tajhotels.com",
+    "website": "https://www.tajhotels.com/en-in/taj/taj-lake-palace-udaipur/",
+    "check_in_time": "02:00 PM",
+    "check_out_time": "12:00 PM",
+    "current_status": "Open",
+    "reopening_date": null,
+    "description": "Floating majestically on Lake Pichola, this iconic hotel offers unparalleled luxury and heritage charm.",
+    "amenities": ["Boat Transfers", "Jiva Spa", "Fine Dining", "Heritage Walks", "Free Wi-Fi"],
+    "star_rating": 5,
+    "number_of_rooms": 66,
+    "room_types_available": ["Luxury Room", "Palace Room", "Royal Suite", "Grand Royal Suite"],
+    "special_offers": "https://www.tajhotels.com/en-in/taj/taj-lake-palace-udaipur/offers",
+    "room_service_menu": [],
+    "bookings": [
+        {
+            "booking_id": "B004",
+            "guest_id": "G006",
+            "room_number": "5",
+            "room_type": "Luxury Room",
+            "check_in_date": "2025-10-20",
+            "check_out_date": "2025-10-23",
+            "status": "Confirmed"
+        }
+    ],
+    "room_statuses": []
+  }
+]
