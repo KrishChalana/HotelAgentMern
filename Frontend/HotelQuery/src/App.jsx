@@ -1,12 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 const BACKEND_URL = "http://localhost:3000"; // Update with your backend URL
-const sidebarItems = [
-  { icon: "🏠", label: "Home" },
-  { icon: "🔖", label: "Bookings" },
-  { icon: "📅", label: "Reservations" },
-  { icon: "👤", label: "Account" },
-];
 
 const initialMessages = [
   {
@@ -33,57 +27,62 @@ function App() {
   const styles = {
     container: {
       display: "flex",
-      height: "100vh",
-      background: "#f7f9fb",
+      // height: "100vh",
+      background: "linear-gradient(120deg, #f8fafc 0%, #e0e7ef 100%)",
       minHeight: 0,
-    },
-    sidebar: {
-      width: 260,
-      minWidth: 80,
-      background: "#f5f8fa",
-      padding: "32px 0",
-      borderRight: "1px solid #e5e7eb",
-      display: "flex",
-      flexDirection: "column",
-      gap: 8,
-      transition: "width 0.2s",
-    },
-    sidebarMobile: {
-      width: 60,
-      padding: "16px 0",
+      justifyContent: "center",
+      alignItems: "center",
+      padding: 32,
+      position: "relative",
+      // width: "100vw",
+      // maxWidth: "100vw",
+      // maxHeight: "100vh",
+      overflow: "hidden",
     },
     main: {
-      flex: 1,
-      padding: "48px 0 0 0",
+      width: "100%",
+      maxWidth: 500,
+      minHeight: 600,
+      maxHeight: 700, // limit card height
+      background: "#fff",
+      borderRadius: 28,
+      boxShadow: "0 8px 40px 0 rgba(37, 99, 235, 0.10), 0 1.5px 8px 0 rgba(0,0,0,0.04)",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      minWidth: 0,
+      padding: "48px 0 0 0",
+      overflow: "hidden", // hide overflow
+      margin: 24,
     },
     chatWrapper: {
       width: "100%",
-      maxWidth: 800,
       flex: 1,
       display: "flex",
       flexDirection: "column",
-      gap: 24,
+      gap: 28,
       marginBottom: 24,
-      overflowY: "auto",
+      overflowY: "auto", // enable vertical scroll
       minHeight: 0,
-      height: "calc(100vh - 260px)", // header + input area
+      padding: "0 40px",
+      maxHeight: 340, // set max height for scroll
+      scrollbarWidth: "thin",
+      scrollbarColor: "#e0e7ef #fff",
     },
     inputArea: {
       width: "100%",
-      maxWidth: 800,
       display: "flex",
       alignItems: "center",
-      background: "#e9eff4",
-      borderRadius: 12,
-      padding: 8,
-      marginBottom: 32,
+      background: "#f3f6fa",
+      borderRadius: 18,
+      padding: 12,
+      margin: "0 0 40px 0",
+      boxShadow: "0 1.5px 8px rgba(37,99,235,0.04)",
+      border: "1.5px solid #e0e7ef",
+      maxWidth: 440,
+      alignSelf: "center",
+      gap: 10,
     },
   };
-  const [audioUrl, setAudioUrl] = useState(null);
   // Responsive sidebar: collapse on small screens
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
@@ -167,8 +166,8 @@ function App() {
             const audioUrl = URL.createObjectURL(audioBlob);
 
             const audio = new Audio(audioUrl);
-            audio.play().catch((err) => {
-              console.error("Playback failed:", err);
+            audio.play().catch(() => {
+              // Playback failed
             });
 
             function base64ToBlob(base64, mime) {
@@ -192,13 +191,13 @@ function App() {
                 parts: [{ text: modelMessage }],
               },
             ]);
-          } catch (err) {
+          } catch {
             alert("Voice message failed.");
           }
         };
         mediaRecorder.start();
         setIsRecording(true);
-      } catch (err) {
+      } catch {
         alert("Microphone access denied or not available.");
       }
     }
@@ -206,71 +205,60 @@ function App() {
 
   return (
     <div style={styles.container}>
-      {/* Sidebar */}
-      <aside
-        style={
-          isMobile
-            ? { ...styles.sidebar, ...styles.sidebarMobile }
-            : styles.sidebar
-        }
+      {/* Decorative SVG background */}
+      <svg
+        width="100%"
+        height="100%"
+        viewBox="0 0 1440 900"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          zIndex: 0,
+          pointerEvents: "none",
+        }}
       >
-        <div
-          style={{
-            fontWeight: 600,
-            fontSize: isMobile ? 16 : 20,
-            marginLeft: isMobile ? 8 : 32,
-            marginBottom: isMobile ? 16 : 32,
-          }}
-        >
-          {isMobile ? "🏨" : "Hotel AI Agent"}
-        </div>
-        <nav style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-          {sidebarItems.map((item, idx) => (
-            <div
-              key={item.label}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                background: idx === 0 ? "#e9eff4" : "transparent",
-                color: idx === 0 ? "#111" : "#444",
-                fontWeight: idx === 0 ? 600 : 500,
-                padding: isMobile ? "10px 8px" : "12px 32px",
-                borderRadius: 12,
-                gap: isMobile ? 0 : 16,
-                cursor: "pointer",
-                fontSize: isMobile ? 20 : 16,
-                justifyContent: isMobile ? "center" : "flex-start",
-              }}
-            >
-              <span style={{ fontSize: 20 }}>{item.icon}</span>
-              {!isMobile && (
-                <span style={{ marginLeft: 16 }}>{item.label}</span>
-              )}
-            </div>
-          ))}
-        </nav>
-      </aside>
-      {/* Main Chat Area */}
-      <main style={styles.main}>
-        <div style={{ width: "100%", maxWidth: 800 }}>
+        <defs>
+          <radialGradient id="bg1" cx="50%" cy="40%" r="80%" fx="60%" fy="30%" gradientTransform="rotate(20)">
+            <stop offset="0%" stopColor="#e0e7ef" stopOpacity="0.7" />
+            <stop offset="100%" stopColor="#f8fafc" stopOpacity="0.2" />
+          </radialGradient>
+          <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#b6c6e6" stopOpacity="0.12" />
+            <stop offset="100%" stopColor="#f8fafc" stopOpacity="0.0" />
+          </linearGradient>
+        </defs>
+        <ellipse cx="1100" cy="120" rx="420" ry="180" fill="url(#bg1)" />
+        <ellipse cx="300" cy="800" rx="340" ry="120" fill="url(#bg2)" />
+        <ellipse cx="1400" cy="900" rx="200" ry="80" fill="#e0e7ef" fillOpacity="0.13" />
+      </svg>
+      {/* Main Chat Area Only */}
+      <main style={{ ...styles.main, zIndex: 1 }}>
+        <div style={{ width: "100%", maxWidth: 440, textAlign: "center", marginBottom: 18 }}>
           <h1
             style={{
-              fontSize: 36,
-              fontWeight: 700,
-              marginBottom: 8,
-              fontSize: isMobile ? 22 : 36,
+              fontSize: isMobile ? 24 : 34,
+              fontWeight: 800,
+              marginBottom: 10,
+              letterSpacing: "-1.5px",
+              color: "#1a237e",
+              lineHeight: 1.1,
             }}
           >
-            Welcome to Hotel AI Agent
+            Hotel AI Agent
           </h1>
           <div
             style={{
-              color: "#444",
+              color: "#5c6f8c",
               fontSize: isMobile ? 15 : 18,
-              marginBottom: 32,
+              marginBottom: 36,
+              fontWeight: 400,
+              lineHeight: 1.5,
             }}
           >
-            Ask me anything about your stay, bookings, or hotel information.
+            Your personal assistant for all hotel queries.
           </div>
         </div>
         <div style={styles.chatWrapper}>
@@ -286,7 +274,11 @@ function App() {
                   display: "flex",
                   flexDirection: isUser ? "row-reverse" : "row",
                   alignItems: "flex-end",
-                  gap: 12,
+                  gap: 16,
+                  marginBottom: 2,
+                  ...(isUser
+                    ? {}
+                    : { marginLeft: isMobile ? 12 : 32 }), // More left margin for bot
                 }}
               >
                 <img
@@ -297,32 +289,39 @@ function App() {
                     height: 40,
                     borderRadius: "50%",
                     objectFit: "cover",
-                    border: "2px solid #e5e7eb",
+                    border: isUser ? "2px solid #2563eb" : "2px solid #e0e7ef",
+                    boxShadow: isUser ? "0 2px 8px #2563eb22" : "0 1px 4px #e0e7ef33",
                   }}
                 />
                 <div>
                   <div
                     style={{
-                      color: "#6b7280",
-                      fontSize: 14,
-                      marginBottom: 2,
+                      color: isUser ? "#2563eb" : "#8a99b3",
+                      fontSize: 13,
+                      marginBottom: 3,
                       textAlign: isUser ? "right" : "left",
+                      fontWeight: 600,
+                      letterSpacing: "0.2px",
                     }}
                   >
-                    {isUser ? "User" : "AI Agent"}
+                    {isUser ? "You" : "AI Agent"}
                   </div>
                   <div
                     style={{
-                      background: isUser ? "#2196f3" : "#e9eff4",
-                      color: isUser ? "#fff" : "#222",
+                      background: isUser ? "#2563eb" : "#f3f6fa",
+                      color: isUser ? "#fff" : "#1a237e",
                       borderRadius: 16,
-                      padding: isMobile ? "8px 12px" : "12px 18px",
-                      maxWidth: isMobile ? 220 : 420,
+                      padding: isMobile ? "10px 14px" : "14px 22px",
+                      maxWidth: isMobile ? 240 : 340,
                       fontSize: isMobile ? 15 : 17,
-                      boxShadow: "0 1px 4px rgba(0,0,0,0.03)",
+                      boxShadow: isUser
+                        ? "0 2px 8px #2563eb22"
+                        : "0 1px 4px #e0e7ef33",
                       marginLeft: isUser ? "auto" : 0,
                       marginRight: isUser ? 0 : "auto",
                       wordBreak: "break-word",
+                      border: isUser ? "none" : "1.5px solid #e0e7ef",
+                      transition: "background 0.2s, color 0.2s",
                     }}
                   >
                     {text}
@@ -347,24 +346,28 @@ function App() {
               border: "none",
               outline: "none",
               background: "transparent",
-              fontSize: isMobile ? 15 : 18,
-              padding: isMobile ? "8px 4px" : "12px 8px",
-              color: "#222",
+              fontSize: isMobile ? 15 : 17,
+              padding: isMobile ? "10px 6px" : "14px 10px",
+              color: "#1a237e",
+              borderRadius: 10,
+              marginRight: 6,
             }}
           />
           <button
             onClick={handleSend}
             style={{
-              background: "#2196f3",
+              background: "#2563eb",
               color: "#fff",
               border: "none",
-              borderRadius: 8,
-              padding: isMobile ? "8px 16px" : "10px 28px",
+              borderRadius: 10,
+              padding: isMobile ? "10px 18px" : "12px 28px",
               fontSize: isMobile ? 15 : 17,
-              fontWeight: 600,
+              fontWeight: 700,
               cursor: "pointer",
-              marginLeft: 8,
+              marginLeft: 4,
               transition: "background 0.2s",
+              boxShadow: "0 1.5px 8px #2563eb22",
+              letterSpacing: "0.2px",
             }}
           >
             Send
@@ -373,8 +376,8 @@ function App() {
             onClick={handleRecord}
             style={{
               background: isRecording ? "#e53935" : "#fff",
-              color: isRecording ? "#fff" : "#2196f3",
-              border: "2px solid #2196f3",
+              color: isRecording ? "#fff" : "#2563eb",
+              border: "2px solid #2563eb",
               borderRadius: "50%",
               width: 44,
               height: 44,
@@ -385,8 +388,11 @@ function App() {
               fontSize: 22,
               fontWeight: 700,
               cursor: "pointer",
-              transition: "background 0.2s",
+              transition: "background 0.2s, color 0.2s",
               outline: isRecording ? "2px solid #e53935" : "none",
+              boxShadow: isRecording
+                ? "0 2px 8px #e5393522"
+                : "0 1px 4px #e0e7ef33",
             }}
             title={isRecording ? "Stop Recording" : "Record Voice"}
           >
